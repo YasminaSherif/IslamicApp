@@ -14,6 +14,8 @@ class AzkarCubit extends Cubit<AzkarStates>{
   List<AzkarModel> azkarNight=[];
   List<AzkarModel> azkarSleeping=[];
   
+
+
   void LoadData()async{
      emit(LoadingState());
     try{
@@ -21,7 +23,7 @@ class AzkarCubit extends Cubit<AzkarStates>{
        var decodedJson=jsonDecode(json) as Map;
        List<dynamic> jsonAzkar=decodedJson['rows'];//list of dynamic objects representing hadiths but still need converting
       List<AzkarModel> allAzkar=jsonAzkar.map((zekr) => AzkarModel.fromJson(zekr)).toList();
-      azkarMorning=allAzkar.where((zekr) => zekr.category=='أذكار الصباح').toList();
+      azkarMorning=allAzkar.where((zekr) => zekr.category==' أذكار الصباح').toList();
       azkarNight=allAzkar.where((zekr) => zekr.category=='أذكار المساء').toList();
       azkarSleeping=allAzkar.where((zekr) => zekr.category=='أذكار النوم').toList();
     }catch(e){
